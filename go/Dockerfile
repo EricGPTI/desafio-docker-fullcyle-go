@@ -7,11 +7,9 @@ RUN go mod download && go mod verify
 
 RUN go build -o app .
 
-FROM golang:1.23-alpine
+FROM scratch
 WORKDIR /usr/src/app
 
 COPY --from=base /usr/src/app .
 
-EXPOSE 8888
-
-CMD [ "go", "run", "app.go" ]
+CMD [ "./app" ]
