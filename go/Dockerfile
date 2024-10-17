@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY . .
 RUN go mod download && go mod verify
 
-RUN go build -o app .
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o app .
 
 FROM scratch
 WORKDIR /usr/src/app
